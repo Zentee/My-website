@@ -1,0 +1,116 @@
+// Durations
+$greene-duration: 3s;
+$and-duration: 2.7s;
+$sons-duration: 3s;
+$curtain-duration: 1s;
+
+// Delays
+$greene-delay: 0s;
+$and-delay: 0s;
+$sons-delay: 0s;
+$curtain-delay: $greene-duration;
+
+// Easing
+$animation-ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+// Mixin
+@mixin loading-animation($name, $duration, $delay, $ease: $animation-ease) {
+  animation: $name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-timing-function: $ease;
+  animation-fill-mode: forwards;
+}
+
+.loading {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1002;
+
+  &_bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    &__back {
+      background-color: #f5f0e8;
+      opacity: 0;
+    }
+    &__front {
+      background-color: rgb(74, 67, 74);
+      @include loading-animation(
+        curtainAnim,
+        $curtain-duration,
+        $curtain-delay
+      );
+    }
+  }
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+}
+
+.greene {
+  transform: translate(50%, -180%);
+
+  @include loading-animation(greeneAnim, $greene-duration, $greene-delay);
+}
+
+.and {
+  transform: translate(-52%, 180%);
+  @include loading-animation(andAnim, $and-duration, $and-delay);
+}
+
+.sons {
+  transform: translate(-40%, 180%);
+
+  @include loading-animation(sonsAnim, $sons-duration, $sons-delay);
+}
+
+// Keyframes
+@keyframes curtainAnim {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+  }
+}
+
+@keyframes greeneAnim {
+  50% {
+    transform: translate(2%, -180%);
+  }
+
+  100% {
+    transform: translate(2%);
+  }
+}
+
+@keyframes andAnim {
+  50% {
+    transform: translate(-52%, 0%);
+  }
+
+  100% {
+    transform: translate(0%);
+  }
+}
+
+@keyframes sonsAnim {
+  50% {
+    transform: translate(-2%, 180%);
+  }
+
+  100% {
+    transform: translate(-2%);
+  }
+}
