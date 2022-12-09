@@ -5,15 +5,32 @@
   height: 100px;
   width: 100%;
   padding: 0 20px;
-  background-image: linear-gradient(to right, purple, orange);
-
-  & > h1 {
-    margin-right: auto;
-  }
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: headerAnim 10s ease infinite;
 
   &_nav {
     display: flex;
     margin-left: auto;
     gap: 20px;
+  }
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+}
+
+// Animation
+
+@keyframes headerAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

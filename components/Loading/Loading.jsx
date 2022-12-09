@@ -78,9 +78,7 @@ export function Loading() {
         </svg>
       </div>
     </div>
-  ) : (
-    <div />
-  );
+  ) : null;
 }
 
 export default Loading;
