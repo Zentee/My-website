@@ -3,7 +3,8 @@ import Logo from "./Logo";
 import Link from "next/Link";
 
 export default function Header() {
-  //gibberish2
+  //gibberish3
+  //gibberish4
   return (
     <header className={styles.header}>
       <a href="/">
